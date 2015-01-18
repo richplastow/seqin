@@ -1,0 +1,54 @@
+{
+  "name": "seqin",
+  "version": "0.0.1",
+  "description": "A JavaScript sequencer library",
+  "main": "build/seqin.js",
+  "directories": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Web Audio",
+    "Sequencer"
+  ],
+  "author": "Rich Plastow <info@oopish.com> (http://oopish.com/)",
+  "license": "GNU",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-coffee": "^2.2.0",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-concat": "^2.4.3",
+    "gulp-header": "^1.2.2",
+    "gulp-tap": "^0.1.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.0.2",
+    "gulp-util": "^3.0.2",
+    "gulp-stylus": "^1.3.6",
+    "nib": "^1.0.4",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-jade": "^0.10.0",
+    "gulp-jsdoc": "^0.1.4",
+    "gulp-vows": "^0.1.2",
+    "vows": "^0.8.1",
+    "node-qunit-phantomjs": "^1.2.0"
+  },
+  "//": {
+    "notes": "The following devDependencies are not currently used",
+    "gulp-sourcemaps": "^1.3.0"
+  },
+  "coffeelintConfig": {
+    "max_line_length": {
+      "value": 80,
+      "level": "warn"
+    },
+    "no_throwing_strings": {
+      "level": "warn"
+    },
+    "no_empty_functions": {
+      "level": "warn"
+    }
+  },
+  "dependencies": {
+    "browser-sync": "^1.9.0"
+  }
+}

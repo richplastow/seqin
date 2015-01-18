@@ -1,0 +1,27 @@
+{
+  "name": "seqin",
+  "version": "0.0.1",
+  "authors": [
+    "Rich Plastow <info@oopish.com>"
+  ],
+  "description": "A JavaScript sequencer library",
+  "main": "index.html",
+  "keywords": [
+    "Web Audio",
+    "Sequencer"
+  ],
+  "license": "GNU",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.2",
+    "audiocontext-polyfill": "~0.0.2",
+    "wavesurfer.js": "~1.0.10"
+  }
+}

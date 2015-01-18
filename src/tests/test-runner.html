@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Seqin - qUnit Test Runner</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/qunit-1.16.0.css" />
+  <script type="text/javascript" src="build/js/seqin.js"></script>
+</head>
+<body>
+  <h1>Seqin - qUnit Test Runner</h1>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.16.0.js"></script>
+  <script>
+    QUnit.test( "a basic test example", function( assert ) {
+      var value = "hello";
+      assert.equal( value, "hello", "We expect value to be hello" );
+    });
+  </script>
+</body>
+</html>
+

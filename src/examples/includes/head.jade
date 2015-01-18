@@ -1,0 +1,11 @@
+head
+  title Seqin - #{title}
+  base(href="../../")
+  meta(http-equiv="Content-Type", content="text/html;charset=utf-8")
+  +link("bower_components/normalize.css/normalize.css")
+  +link("build/css/seqin.css")
+  +link("build/examples/css/" + name + ".css")
+  +script("bower_components/audiocontext-polyfill/audiocontext-polyfill.js")
+  +script("bower_components/wavesurfer.js/build/wavesurfer.min.js")
+  +script("build/js/seqin.js")
+  +script("build/examples/js/" + name + ".js")

@@ -1,0 +1,8 @@
+{
+  "name": "basic-sequencer",
+  "title": "Basic Sequencer",
+  "version": "0.0.1",
+  "description": "A simple Seqin use case",
+  "author": "Rich Plastow <info@oopish.com> (http://oopish.com/)",
+  "license": "GNU"
+}
