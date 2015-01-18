@@ -125,6 +125,11 @@
    * src/class/01-seqin-error.coffee
    */
 
+
+  /**
+   * @class Custom error class to inform where an error is from
+   */
+
   Seqin.Error = (function(_super) {
     __extends(Error, _super);
 
