@@ -1,11 +1,11 @@
-class Seqin.Master extends Seqin.Base
-  I: 'Seqin.Master'
+class Seqin.Grid extends Seqin.Base
+  I: 'Seqin.Grid'
   toString: -> "[object #{@I}]"
   phase: 'init'
 
   constructor: (opt) ->
     @phase = 'construct'
-    @initObject()        # ensure `_app.masters` and `_app.masterLut` exist
+    @initObject()        # ensure `_app.grids` and `_app.gridLut` exist
     @parseOptions opt    # validate options, and record them as properties
     @recordInstance()    # make this instance available in `_app`
 
@@ -16,8 +16,8 @@ class Seqin.Master extends Seqin.Base
 
   # Construct the model
   initObject: ->
-    _app.masters   ?= []
-    _app.masterLut ?= {}
+    _app.grids   ?= []
+    _app.gridLut ?= {}
 
   parseOptions: (opt) ->
     if 'undefined' == typeof opt then throw new Seqin.Error @,
@@ -30,8 +30,8 @@ class Seqin.Master extends Seqin.Base
     @trackCount = @validTrackCount opt.trackCount
 
   recordInstance: ->
-    _app.masters.push @
-    _app.masterLut[@id] = @
+    _app.grids.push @
+    _app.gridLut[@id] = @
 
 
 
@@ -44,7 +44,7 @@ class Seqin.Master extends Seqin.Base
       "#{@I} `id` is type '#{typeof id}', not 'string'"
     if ! idrx.test id           then throw new Seqin.Error @,
       "#{@I} `id` '#{id}' fails #{idrx}"
-    if _app.masterLut[id]       then throw new Seqin.Error @,
+    if _app.gridLut[id]       then throw new Seqin.Error @,
       "Duplicate #{@I} `id` '#{id}'"
     id
 
@@ -95,8 +95,8 @@ class Seqin.Master extends Seqin.Base
 
   visualise: ($container) ->
     @$container = $container
-    @$visual = make 'div', { class:'seqin-master', id:"seqin-#{@id}" },
-      "Seqin Master #{@id}"
+    @$visual = make 'div', { class:'seqin-grid', id:"seqin-#{@id}" },
+      "Seqin Grid #{@id}"
     for track in @tracks
       track.visualise @$visual
     $container.appendChild @$visual

@@ -20,7 +20,7 @@ var
 
   , jade        = require('gulp-jade')
 
-  , jsdoc       = require("gulp-jsdoc")
+  // , jsdoc       = require("gulp-jsdoc")
   , vows        = require('gulp-vows')
   , qunit       = require('node-qunit-phantomjs')
 
@@ -212,9 +212,9 @@ gulp.task('watched-test-file', function () { // no dependency
 
 // Generate documentation
 gulp.task('jsdoc', ['script-library'], function () {
-    gulp.src("./build/js/seqin.js")
-       .pipe( jsdoc('./build/docs/') )
-    ;
+    // gulp.src("./build/js/seqin.js")
+    //    .pipe( jsdoc('./build/docs/') )
+    // ;
 });
 
 

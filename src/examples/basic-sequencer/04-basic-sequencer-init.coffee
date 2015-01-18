@@ -18,22 +18,35 @@ window.addEventListener 'load', ->
     # Create an Audio Context, and connect it to the output speakers
     ctx = new window.AudioContext
 
-    # Create a stereo Master track
-    master0 = new Seqin.Master
-      id:'m0'
+    # Create a Grid
+    grid0 = new Seqin.Grid
+      id:'g0'
       ctx: new window.AudioContext
       trackCount: 2
 
-    # master1 = new Seqin.Master
-    #   id:'m1'
+    # track0 = new Seqin.Track
+    #   id:'t0'
+    #   someParam: 'I am some kind of Track parameter'
+
+    # grid0.attach track0, 123
+
+    # clip0 = new Seqin.Clip
+    #   id:'c0'
+    #   someParam: 'I am some kind of Clip parameter'
+
+    # track0.attach clip0, 123
+
+
+    # grid1 = new Seqin.Grid
+    #   id:'g1'
     #   ctx: new OfflineAudioContext 2, 44100*3, 44100
     #   trackCount: 1
 
     # Show a summary of the current Seqin setup
     log Seqin.list()
 
-    # Visualise the Master track
-    master0.visualise _app.$container
+    # Visualise the Grid
+    grid0.visualise _app.$container
 
 
   catch e
