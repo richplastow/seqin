@@ -8,7 +8,7 @@ class Seqin.Snapshot extends Seqin.Base
 
   constructor: (opt) ->
     @phase = 'construct'
-    @initObject()      # ensure `_app.masters` and `_app.masterlut` exist
+    @initObject()      # ensure `_app.snapshots` and `_app.snapshotLut` exist
     @parseOptions opt  # validate options, and record them as properties
     @takeSnapshot()    # take a snapshot when `Seqin.Snapshot` is constructed
 
@@ -16,8 +16,8 @@ class Seqin.Snapshot extends Seqin.Base
 
   # Construct the model
   initObject: ->
-    _app.masters   ?= []
-    _app.masterLut ?= {}
+    _app.snapshots   ?= []
+    _app.snapshotLut ?= {}
 
   parseOptions: (opt) ->
     if 'undefined' == typeof opt then throw new Seqin.Error @,
