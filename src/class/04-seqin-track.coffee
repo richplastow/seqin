@@ -48,9 +48,9 @@ class Seqin.Track extends Seqin.Base
     id
 
   validParent: (parent) ->
-    parentrx = /^\[object Seqin.Master\]$/
+    parentrx = /^\[object Seqin.Grid\]$/
     if 'undefined' == typeof parent then throw new Seqin.Error @,
-      "`parent` of #{@I} `#{@id}` is missing. \nMust be a Seqin.Master instance"
+      "`parent` of #{@I} `#{@id}` is missing. \nMust be a Seqin.Grid instance"
     if 'object' != typeof parent    then throw new Seqin.Error @,
       "`parent` of #{@I} `#{@id}` has type '#{typeof parent}' not 'object'"
     if ! parentrx.test parent       then throw new Seqin.Error @,

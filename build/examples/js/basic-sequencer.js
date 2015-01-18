@@ -106,7 +106,7 @@
    */
 
   window.addEventListener('load', function() {
-    var Seqin, ctx, e, master0;
+    var Seqin, ctx, e, grid0;
     try {
       _app.$container = $('.basic-sequencer');
       if (!_app.$container) {
@@ -117,13 +117,13 @@
         throw new Error("Cannot find the `Seqin` sequencer library. \nLoad it before this script, eg `<script src=\"js/seqin.js\"></script>`");
       }
       ctx = new window.AudioContext;
-      master0 = new Seqin.Master({
-        id: 'm0',
+      grid0 = new Seqin.Grid({
+        id: 'g0',
         ctx: new window.AudioContext,
         trackCount: 2
       });
       log(Seqin.list());
-      return master0.visualise(_app.$container);
+      return grid0.visualise(_app.$container);
     } catch (_error) {
       e = _error;
       return error('04-basic-sequencer-init.coffee', e);

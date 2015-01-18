@@ -166,21 +166,21 @@
 
 
   /**
-   * src/class/02-seqin-master.coffee
+   * src/class/02-seqin-grid.coffee
    */
 
-  Seqin.Master = (function(_super) {
-    __extends(Master, _super);
+  Seqin.Grid = (function(_super) {
+    __extends(Grid, _super);
 
-    Master.prototype.I = 'Seqin.Master';
+    Grid.prototype.I = 'Seqin.Grid';
 
-    Master.prototype.toString = function() {
+    Grid.prototype.toString = function() {
       return "[object " + this.I + "]";
     };
 
-    Master.prototype.phase = 'init';
+    Grid.prototype.phase = 'init';
 
-    function Master(opt) {
+    function Grid(opt) {
       this.phase = 'construct';
       this.initObject();
       this.parseOptions(opt);
@@ -189,14 +189,14 @@
       this.buildElement();
     }
 
-    Master.prototype.initObject = function() {
-      if (_app.masters == null) {
-        _app.masters = [];
+    Grid.prototype.initObject = function() {
+      if (_app.grids == null) {
+        _app.grids = [];
       }
-      return _app.masterLut != null ? _app.masterLut : _app.masterLut = {};
+      return _app.gridLut != null ? _app.gridLut : _app.gridLut = {};
     };
 
-    Master.prototype.parseOptions = function(opt) {
+    Grid.prototype.parseOptions = function(opt) {
       if ('undefined' === typeof opt) {
         throw new Seqin.Error(this, "The `opt` object was not passed to " + this.I + ", eg:\n `foo = new " + this.I + "({ id:'bar', ctx:MyCtx, trackCount:2 })`");
       }
@@ -208,12 +208,12 @@
       return this.trackCount = this.validTrackCount(opt.trackCount);
     };
 
-    Master.prototype.recordInstance = function() {
-      _app.masters.push(this);
-      return _app.masterLut[this.id] = this;
+    Grid.prototype.recordInstance = function() {
+      _app.grids.push(this);
+      return _app.gridLut[this.id] = this;
     };
 
-    Master.prototype.validId = function(id) {
+    Grid.prototype.validId = function(id) {
       var idrx;
       idrx = /^[a-z][-a-z0-9]+$/;
       if ('undefined' === typeof id) {
@@ -225,13 +225,13 @@
       if (!idrx.test(id)) {
         throw new Seqin.Error(this, "" + this.I + " `id` '" + id + "' fails " + idrx);
       }
-      if (_app.masterLut[id]) {
+      if (_app.gridLut[id]) {
         throw new Seqin.Error(this, "Duplicate " + this.I + " `id` '" + id + "'");
       }
       return id;
     };
 
-    Master.prototype.validCtx = function(ctx) {
+    Grid.prototype.validCtx = function(ctx) {
       var ctxrx;
       ctxrx = /^\[object (Offline)?AudioContext\]$/;
       if ('undefined' === typeof ctx) {
@@ -246,7 +246,7 @@
       return ctx;
     };
 
-    Master.prototype.validTrackCount = function(trackCount) {
+    Grid.prototype.validTrackCount = function(trackCount) {
       if ('undefined' === typeof trackCount) {
         throw new Seqin.Error(this, "`trackCount` of " + this.I + " `" + this.id + "` is missing");
       }
@@ -262,13 +262,13 @@
       return trackCount;
     };
 
-    Master.prototype.validUA = function() {
+    Grid.prototype.validUA = function() {
       if ('complete' !== document.readyState) {
         throw new Seqin.Error(this, "`document.readyState` is currently '" + document.readyState + "'. \n Please wait for 'complete', eg `window.addEventListener('load', ...)`");
       }
     };
 
-    Master.prototype.buildElement = function() {
+    Grid.prototype.buildElement = function() {
       var i, _i, _ref;
       this.tracks = [];
       for (i = _i = 0, _ref = this.trackCount; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
@@ -280,20 +280,20 @@
       return log("buildElement " + this.id);
     };
 
-    Master.prototype.takeSnapshot = function() {
+    Grid.prototype.takeSnapshot = function() {
       return {
         id: this.id,
         trackCount: this.trackCount
       };
     };
 
-    Master.prototype.visualise = function($container) {
+    Grid.prototype.visualise = function($container) {
       var track, _i, _len, _ref;
       this.$container = $container;
       this.$visual = make('div', {
-        "class": 'seqin-master',
+        "class": 'seqin-grid',
         id: "seqin-" + this.id
-      }, "Seqin Master " + this.id);
+      }, "Seqin Grid " + this.id);
       _ref = this.tracks;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         track = _ref[_i];
@@ -302,7 +302,7 @@
       return $container.appendChild(this.$visual);
     };
 
-    Master.prototype.unvisualise = function() {
+    Grid.prototype.unvisualise = function() {
       var track, _i, _len, _ref;
       _ref = this.tracks;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -315,7 +315,7 @@
       return log(this.$visual);
     };
 
-    return Master;
+    return Grid;
 
   })(Seqin.Base);
 
@@ -387,9 +387,9 @@
 
     Track.prototype.validParent = function(parent) {
       var parentrx;
-      parentrx = /^\[object Seqin.Master\]$/;
+      parentrx = /^\[object Seqin.Grid\]$/;
       if ('undefined' === typeof parent) {
-        throw new Seqin.Error(this, "`parent` of " + this.I + " `" + this.id + "` is missing. \nMust be a Seqin.Master instance");
+        throw new Seqin.Error(this, "`parent` of " + this.I + " `" + this.id + "` is missing. \nMust be a Seqin.Grid instance");
       }
       if ('object' !== typeof parent) {
         throw new Seqin.Error(this, "`parent` of " + this.I + " `" + this.id + "` has type '" + (typeof parent) + "' not 'object'");
