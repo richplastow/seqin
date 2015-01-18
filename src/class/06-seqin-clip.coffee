@@ -1,12 +1,11 @@
-class Seqin.Track extends Seqin.Base
-  I: 'Seqin.Track'
+class Seqin.Clip extends Seqin.Base
+  I: 'Seqin.Clip'
   toString: -> "[object #{@I}]"
   phase: 'init'
-  clips: []
 
   constructor: (opt) ->
     @phase = 'construct'
-    @initObject()        # ensure `_app.tracks` and `_app.trackLut` exist
+    @initObject()        # ensure `_app.clips` and `_app.clipLut` exist
     @parseOptions opt    # validate options, and record them as properties
     @recordInstance()    # make this instance available in `_app`
 
@@ -17,8 +16,8 @@ class Seqin.Track extends Seqin.Base
 
   # Construct the model
   initObject: ->
-    _app.tracks   ?= []
-    _app.trackLut ?= {}
+    _app.clips   ?= []
+    _app.clipLut ?= {}
 
   parseOptions: (opt) ->
     if 'undefined' == typeof opt then throw new Seqin.Error @,
@@ -27,11 +26,11 @@ class Seqin.Track extends Seqin.Base
     if 'object' != typeof opt    then throw new Seqin.Error @,
       "The `opt` argument passed to #{@I} has type '#{typeof opt}' not 'object'"
     @id         = @validId         opt.id
-    @parent     = @validParent     opt.parent
+    @src        = @validSrc        opt.src
 
   recordInstance: ->
-    _app.tracks.push @
-    _app.trackLut[@id] = @
+    _app.clips.push @
+    _app.clipLut[@id] = @
 
 
 
@@ -44,21 +43,19 @@ class Seqin.Track extends Seqin.Base
       "#{@I} `id` is type '#{typeof id}', not 'string'"
     if ! idrx.test id           then throw new Seqin.Error @,
       "#{@I} `id` '#{id}' fails #{idrx}"
-    if _app.trackLut[id]        then throw new Seqin.Error @,
+    if _app.clipLut[id]        then throw new Seqin.Error @,
       "Duplicate #{@I} `id` '#{id}'"
     id
 
-  validParent: (parent) ->
-    parentrx = /^\[object Seqin.Grid\]$/
-    if 'undefined' == typeof parent then throw new Seqin.Error @,
-      "`parent` of #{@I} `#{@id}` is missing. \nMust be a Seqin.Grid instance"
-    if 'object' != typeof parent    then throw new Seqin.Error @,
-      "`parent` of #{@I} `#{@id}` has type '#{typeof parent}' not 'object'"
-    if ! parentrx.test parent       then throw new Seqin.Error @,
-      "`parent` of #{@I} `#{@id}` is invalid. \nIt fails #{parentrx}"
-    parent
-
-
+  validSrc: (src) ->
+    srcrx = /^\[object AudioNode\]$/
+    if 'undefined' == typeof src then throw new Seqin.Error @,
+      "`src` of #{@I} `#{@id}` is missing."
+    if 'object' != typeof src    then throw new Seqin.Error @,
+      "`src` of #{@I} `#{@id}` has type '#{typeof src}' not 'object'"
+    if ! ctxrx.test src          then throw new Seqin.Error @,
+      "`src` of #{@I} `#{@id}` is invalid. It fails #{ctxrx}"
+    src
 
   # Construct the view
   validUA: ->
@@ -78,8 +75,8 @@ class Seqin.Track extends Seqin.Base
 
   visualise: ($container) ->
     @$container = $container
-    @$visual = make 'div', { class:'seqin track', id:"seqin-#{@id}" },
-      "Seqin Track #{@id}"
+    @$visual = make 'div', { class:'seqin clip', id:"clip-#{@id}" },
+      "Seqin Clip #{@id}"
     $container.appendChild @$visual
 
   unvisualise: ->
@@ -88,8 +85,6 @@ class Seqin.Track extends Seqin.Base
     delete @$visual
     log @$visual
 
-  addClip: (clip) ->
-    @clips.push clip
 
 
  
