@@ -10,7 +10,7 @@ class Seqin.Grid extends Seqin.Base
     @recordInstance()    # make this instance available in `_app`
 
     @validUA()           # ensure the user agent (usually a browser) is ready
-    @buildElement()      # create the Web Audio nodes
+    @initTracks()      # create the initial Tracks
 
 
 
@@ -78,13 +78,13 @@ class Seqin.Grid extends Seqin.Base
       Please wait for 'complete', eg `window.addEventListener('load', ...)`"
     # @todo throw an error if the user agent is not capable
 
-  buildElement: ->
+  initTracks: ->
     @tracks = []
-    for i in [0..@trackCount]
+    for i in [0..@trackCount-1]
       @tracks.push new Seqin.Track
         id: "#{@id}-track-#{i}"
         parent: @
-    log "buildElement #{@id}"
+    # log "initTracks #{@id}"
 
 
 

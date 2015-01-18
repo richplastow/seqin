@@ -18,7 +18,7 @@ window.addEventListener 'load', ->
     # Create an Audio Context, and connect it to the output speakers
     ctx = new window.AudioContext
 
-    # Create a Grid
+    # Create a Grid, initially containing 2 tracks
     grid0 = new Seqin.Grid
       id:'g0'
       ctx: new window.AudioContext
