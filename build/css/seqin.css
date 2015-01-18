@@ -14,6 +14,11 @@
 /*
  * src/style/04-seqin-layout.styl
  */
+#log {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #808080;
+}
 /*
  * src/style/05-seqin-typography.styl
  */
